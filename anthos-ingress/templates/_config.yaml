@@ -1,0 +1,87 @@
+rules:
+  - hosts:
+      - {{ .Values.domain }}
+    backends:
+      - service: config
+        servicePort: 80
+        paths:
+          - /config
+          - /config/*
+          - /config.json
+      - service: rest-api
+        servicePort: 80
+        paths:
+          - /api/*
+      - service: graphql
+        servicePort: 80
+        paths:
+          - /graphql
+          - /graphiql
+          - /graphql/healthCheck
+      - service: graphql-custody
+        servicePort: 80
+        paths:
+          - /custody/graphql/v1
+          - /custody/graphiql/v1
+          - /graphql-custody/healthCheck
+      - service: oauth
+        servicePort: 80
+        paths:
+          - /static/*
+          - /auth
+          - /login
+          - /signup
+          - /callback
+          - /verify
+          - /consent
+          - /apple-app-site-association
+          - /reset-password
+          - /reset-password-failure
+          - /update-password
+          - /forgot-username
+          - /forgot-username-success
+          - /change-email
+          - /confirm-email
+          - /change-username
+          - /confirm-username
+          - /update-password-success
+          - /reset-password-success
+          - /resend-verification-email
+          - /validate-username
+          - /welcome
+          - /password-lock
+      - service: hydra
+        servicePort: 443
+        paths:
+          - /oauth2/auth
+          - /oauth2/token
+      - service: admin
+        servicePort: 80
+        paths:
+          - /admin
+          - /admin/*
+      - service: jaeger-nginx-proxy
+        servicePort: 80
+        paths:
+          - /jaeger/ui
+          - /jaeger/ui/*
+      - service: fiat-purchase
+        servicePort: 80
+        paths:
+          - /fiatpurchase
+          - /fiatpurchase/*
+      - service: docs
+        servicePort: 80
+        paths:
+          - /docs
+          - /docs/*
+      - service: crypto-swap
+        servicePort: 80
+        paths:
+          - /swap
+          - /swap/*
+      - service: payment
+        servicePort: 80
+        paths:
+          - /payments
+          - /payments/*

@@ -1,0 +1,7 @@
+ingress:
+  annotations: {}
+
+domain: anthoc.ml
+# gcloud_ssl_certificate:
+# restrict_non_ssl_traffic:
+# disable_lets_encrypt_ssl:

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: refetch-tx-service
+  labels:
+    app: refetch-tx-service
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+type: Opaque
+data:
+  redis_url: {{ .Values.refetch_tx_service.redis_url | b64enc | quote }}

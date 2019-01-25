@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: anthos-nats-config
+  labels:
+    app: anthos
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    configDigest: {{ .Values.config_digest }}
+data:
+  NATS_URL: {{ .Values.nats.url | quote }}

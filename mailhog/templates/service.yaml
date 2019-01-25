@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "mailhog.name" . }}
+  labels:
+    app: {{ template "mailhog.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+    prometheus.io/scrape: 'true'
+  {{- if .Values.service.https }}
+    service.alpha.kubernetes.io/app-protocols: '{"{{ template "mailhog.name" . }}":"HTTPS"}'
+    prometheus.io/scheme: 'https'
+  {{- end }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.externalPort }}
+      targetPort: {{ .Values.service.internalPort }}
+      protocol: TCP
+      name: {{ template "mailhog.name" . }}
+  selector:
+    app: {{ template "mailhog.name" . }}
+    release: {{ .Release.Name }}

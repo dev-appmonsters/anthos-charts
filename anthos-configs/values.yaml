@@ -1,0 +1,20 @@
+# db:
+#   host: pg-devops-devops-2c0b.xxx.com
+#   port: "27395"
+#   user: adxxx
+#   config: development
+#   default_db: defaultdb
+#   use_ssl: require
+
+# nats:
+#   url: "nats://0.0.0.0:0000"
+
+oauth_client:
+  xyz_mobile:
+    id: xyz-app
+  consent_app:
+    id: consent-app
+  test_partner:
+    id: test-partner-app
+  affiliate_partner_app:
+    id: test-payroc

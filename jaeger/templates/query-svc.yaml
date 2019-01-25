@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jaeger-query
+  labels:
+    app: jaeger
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    jaeger-infra: jaeger-service
+spec:
+  ports:
+    - name: query-http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    jaeger-infra: jaeger-pod
+  type: NodePort

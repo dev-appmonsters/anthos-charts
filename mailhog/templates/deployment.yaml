@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mailhog
+  labels:
+    app: mailhog
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    serviceHash: {{ .Values.image.tag }}
+    configDigest: {{ .Values.config_digest }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: mailhog
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MH_OUTGOING_SMTP
+              value: /home/mailhog/mh_outgoing_smtp_config.json
+          volumeMounts:
+          - name: smtp-config-json
+            readOnly: true
+            mountPath: "/home/mailhog"
+      volumes:
+        - name: smtp-config-json
+          secret:
+            secretName: mailhog
+
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+    {{- end }}

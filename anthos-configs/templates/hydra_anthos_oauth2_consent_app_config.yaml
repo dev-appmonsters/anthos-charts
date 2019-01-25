@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: anthos-hydra-xyz-oauth2-consent-app-config
+  labels:
+    app: anthos
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    configDigest: {{ .Values.config_digest }}
+data:
+  HYDRA_xyz_OAUTH2_CONSENT_APP_ID: {{ .Values.oauth_client.consent_app.id | quote }}

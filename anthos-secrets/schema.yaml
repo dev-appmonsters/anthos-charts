@@ -1,0 +1,198 @@
+kube-context:
+  type: string
+  required: true
+
+anthos:
+  db:
+    password:
+      type: string
+      required: true
+  sql_sa_credentials_json:
+    type: string
+    required: true
+
+  oauth_client:
+    xyz_mobile:
+      secret:
+        type: string
+        required: true
+    consent_app:
+      secret:
+        type: string
+        required: true
+    test_partner:
+      secret:
+        type: string
+        required: true
+    affiliate_partner:
+      secret:
+        type: string
+        required: true
+
+  sentry_dns:
+    type: string
+    required: true
+
+graphql:
+  impersonation_whitelist_json:
+    type: string
+    required: true
+
+hydra:
+  force_root_client_credentials:
+    type: string
+    required: true
+  system_secret:
+    type: string
+    required: true
+  cluster_id:
+    type: string
+    required: true
+  cluster_secret:
+    type: string
+    required: true
+
+oauth:
+  redis_url:
+    type: string
+    required: true
+  session_secret:
+    type: string
+    required: true
+  session_key:
+    type: string
+    required: true
+
+email:
+  smtp_username:
+    type: string
+    required: true
+  smtp_password:
+    type: string
+    required: true
+
+price_collector:
+  redis_url:
+    type: string
+    required: true
+
+price_recorder:
+  db:
+    password:
+      type: string
+      required: true
+  redis_url:
+    type: string
+    required: true
+  sql_sa_credentials_json:
+    type: string
+    required: true
+
+
+stackdriver:
+  google_stackdriver_service_account_json:
+    type: string
+    required: true
+
+admin:
+  oauth:
+    google_client_id:
+      type: string
+      required: true
+    google_client_secret:
+      type: string
+      required: true
+  session:
+    secret_key_base:
+      type: string
+      required: true
+  super_admin_access_token:
+    type: string
+    required: true
+  google_application_credentials_json:
+    type: string
+    required: true
+  fastly_api_key:
+    type: string
+    required: true
+  sidekiq_redis_url:
+    type: string
+    required: true
+
+node_wrappers:
+  ethereum:
+    etherscan_api_token:
+      type: string
+      required: true
+
+jaeger_nginx_proxy:
+  htpasswd:
+    type: string
+    required: true
+
+refetch_tx_service:
+  redis_url:
+    type: string
+    required: true
+
+docs:
+  docs_password:
+    type: string
+    require: true
+
+block_fetcher_service:
+  redis_url:
+    type: string
+    required: true
+
+user_profile:
+  redis_url:
+    type: string
+    required: true
+
+docs:
+  docs_password:
+    type: string
+    required: true
+
+fiat_purchase:
+  simplex_api_key:
+    type: string
+    required: true
+  redis_url:
+    type: string
+    required: true
+
+crypto_swap:
+  shapeshift_client_id:
+    type: string
+    required: true
+  shapeshift_client_secret:
+    type: string
+    required: true
+
+user:
+  cipher_master_key:
+    type: string
+    required: true
+
+merchant:
+  cipher_master_key:
+    type: string
+    required: true
+
+wallet:
+  redis_url:
+    type: string
+    required: true
+
+key_manager:
+  envelope_key:
+    type: string
+    required: true
+  upload_key:
+    type: string
+    required: true
+  km_sa_json:
+    type: string
+    required: true

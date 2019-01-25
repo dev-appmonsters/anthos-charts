@@ -1,0 +1,14 @@
+image:
+  repository: mailhog/mailhog
+  tag: latest
+service:
+  type: NodePort
+  externalPort: "xxxx"
+  internalPort: "xxxx"
+secrets:
+  smtp:
+    server: email-smtp.us-west-2.amazonaws.com
+    host: email-smtp.us-west-2.amazonaws.com
+    port: "0000"
+    username: xxxxxx
+    password: xxxxxx

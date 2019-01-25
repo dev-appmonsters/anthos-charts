@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: anthos-hydra-test-affiliate-partner-app-config
+  labels:
+    app: anthos
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    configDigest: {{ .Values.config_digest }}
+data:
+  HYDRA_TEST_AFFILIATE_PARTNER_APP_CLIENT_ID: {{ .Values.oauth_client.affiliate_partner_app.id | quote }}

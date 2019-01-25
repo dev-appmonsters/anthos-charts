@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jaeger-agent-client-config
+  labels:
+    app: anthos
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    configDigest: {{ .Values.config_digest }}
+data:
+  JAEGER_AGENT_HOST: jaeger-tracing-agent.monitoring

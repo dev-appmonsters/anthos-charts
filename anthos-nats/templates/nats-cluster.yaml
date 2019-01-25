@@ -1,0 +1,13 @@
+apiVersion: "nats.io/v1alpha2"
+kind: "NatsCluster"
+metadata:
+  name: anthos-nats-cluster
+  namespace: nats-io
+  labels:
+    app: anthos
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  size: {{ .Values.size }}
+  version: "1.1.0"

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: jaeger-nginx-proxy
+  labels:
+    app: jaeger-nginx-proxy
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    configDigest: {{ .Values.config_digest }}
+type: Opaque
+data:
+  htpasswd: {{ .Values.jaeger_nginx_proxy.htpasswd | b64enc | quote }}

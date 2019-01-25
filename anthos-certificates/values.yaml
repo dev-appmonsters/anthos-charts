@@ -1,0 +1,7 @@
+domain: anthosx.gq
+
+issuer:
+  email: xxxx@domain.com
+  # Use https://acme-staging.api.letsencrypt.org/directory in dev or staging envs
+  # staging environment will not issue trusted certificates but is used to ensure that the verification process is working properly before moving to production. Let's Encrypt's production environment imposes much stricter rate limits, so to reduce the chance of you hitting those limits it is highly recommended to start by using the staging environment.
+  server: https://xxx-v01.api.letsencrypt.org/directory

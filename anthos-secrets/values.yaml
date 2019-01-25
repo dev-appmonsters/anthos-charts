@@ -1,0 +1,114 @@
+anthos:
+  db:
+    password: fake
+  sql_sa_credentials_json: |-
+    {
+      "fake": "fake"
+    }
+
+  oauth_client:
+    xyz_mobile:
+      secret: fake
+    consent_app:
+      secret: fake
+    test_partner:
+      secret: fake
+    affiliate_partner:
+      secret: fake
+  sentry_dns: fake
+
+graphql:
+  impersonation_whitelist_json: |-
+    ["fake","fake-two"]
+
+hydra:
+  force_root_client_credentials: fake
+  system_secret: fake
+  cluster_id: fake
+  cluster_secret: fake
+
+oauth:
+  redis_url: fake
+  session_secret: keyboard cat
+  session_key: xyz.sid
+
+email:
+  smtp_username: fake
+  smtp_password: fake
+
+price_collector:
+  redis_url: fake
+
+price_recorder:
+  db:
+    password: fake
+  redis_url: fake
+  sql_sa_credentials_json: |-
+    {
+      "fake": "fake"
+    }
+
+stackdriver:
+  google_stackdriver_service_account_json: |-
+    {
+      "fake":"fake"
+    }
+
+admin:
+  oauth:
+    google_client_id: fake
+    google_client_secret: fake
+  session:
+    secret_key_base: fake
+  super_admin_access_token: fake
+  google_application_credentials_json: |-
+    {
+      "fake":"fake"
+    }
+  fastly_api_key: fake
+  sidekiq_redis_url: fake
+
+node_wrappers:
+  ethereum:
+    etherscan_api_token: fake
+
+jaeger_nginx_proxy:
+  htpasswd: |-
+    fake_user:fake_password
+
+refetch_tx_service:
+  redis_url: fake
+
+docs:
+  docs_password: fake
+
+block_fetcher_service:
+  redis_url: fake
+
+user_profile:
+  redis_url: fake
+
+fiat_purchase:
+  simplex_api_key: fake
+  redis_url: fake
+
+crypto_swap:
+  shapeshift_client_id: fake
+  shapeshift_client_secret: fake
+
+user:
+  cipher_master_key: fake
+
+merchant:
+  cipher_master_key: fake
+
+wallet:
+  redis_url: fake
+
+key_manager:
+  envelope_key: fake
+  upload_key: fake
+  km_sa_json: |-
+    {
+      "fake":"fake"
+    }

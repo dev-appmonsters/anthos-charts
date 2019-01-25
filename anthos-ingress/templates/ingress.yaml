@@ -1,0 +1,49 @@
+{{-  $ingressRules := include (print $.Template.BasePath "/_config.yaml") . | fromYaml }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: anthos
+  labels:
+    app: anthos
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    configDigest: {{ .Values.config_digest }}
+  annotations:
+    # Completely disable non-https rules,
+    # https redirect is not the good solution as request has already transmittes the data in plaintext over the internet so if that initial request had any sensitive data, it could already be sniffed.
+    {{- if .Values.restrict_non_ssl_traffic }}
+    kubernetes.io/ingress.allow-http: "false"
+    {{- end }}
+
+    {{- if .Values.gcloud_ssl_certificate }}
+    ingress.gcp.kubernetes.io/pre-shared-cert: {{ .Values.gcloud_ssl_certificate }}
+    {{- end }}
+
+    {{- range $key, $value := .Values.ingress.annotations }}
+      {{ $key }}: {{ $value | quote }}
+    {{- end }}
+spec:
+{{- if not .Values.disable_lets_encrypt_ssl }}
+  tls:
+    - secretName: letsencrypt-tls-crt
+      hosts:
+        - {{ .Values.domain }}
+{{- end }}
+
+  rules:
+    {{- range $rule := $ingressRules.rules }}
+      {{- range $host := $rule.hosts }}
+    - host: {{ $host }}
+      http:
+        paths:
+        {{- range $backend := $rule.backends }}
+          {{- range $path := $backend.paths }}
+          - path: {{ $path }}
+            backend:
+              serviceName: {{ $backend.service }}
+              servicePort: {{ $backend.servicePort }}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}

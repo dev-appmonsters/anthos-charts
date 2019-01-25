@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: price-recorder
+  labels:
+    app: price-recorder
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    configDigest: {{ .Values.config_digest }}
+type: Opaque
+data:
+  db_password: {{ .Values.price_recorder.db.password | b64enc | quote }}
+  redis_url: {{ .Values.price_recorder.redis_url | b64enc | quote }}
+  sql_sa_credentials.json: {{ .Values.price_recorder.sql_sa_credentials_json | b64enc | quote }}

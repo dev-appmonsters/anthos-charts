@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: graphql
+  labels:
+    app: graphql
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    configDigest: {{ .Values.config_digest }}
+type: Opaque
+data:
+  impersonation_whitelist_json: {{ .Values.graphql.impersonation_whitelist_json | b64enc | quote }}
